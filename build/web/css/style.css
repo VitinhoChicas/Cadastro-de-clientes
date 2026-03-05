@@ -326,6 +326,7 @@ table.display {
 .report-table {
     width: 100%;
     border-collapse: collapse;
+    
 }
 
 .report-table th,
@@ -333,7 +334,11 @@ table.display {
     padding: 12px 20px;
     text-align: left;
     border-bottom: 1px solid #eee;
+    font-size: 12px;
+    
 }
+
+
 
 .report-table th {
     background: #ecf0f1;
@@ -427,6 +432,9 @@ table.display {
         box-shadow: none;
         border: 1px solid #ddd;
     }
+    
+    
+    
     
    
 }

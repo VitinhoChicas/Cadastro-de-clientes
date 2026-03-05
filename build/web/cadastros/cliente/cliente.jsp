@@ -35,7 +35,9 @@
                         <th>E-mail</th>
                         <th>Data Nascimento</th>
                         <th>Telefone</th>
-                        <th>Ações</th>
+                        <th>CPF</th>
+                        <th>Rg</th>
+                        <th>Ações</th>                
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +48,8 @@
                             <td>${cliente.email}</td>
                             <td><fmt:formatDate value="${cliente.dataNascimento}" pattern="dd/MM/yyyy"/></td>
                             <td>${cliente.telefone}</td>
+                            <td>${cliente.cpf}</td>
+                            <td>${cliente.rg}</td>
                             <td class="actions">
                                 <a href="ClienteCarregar?idCliente=${cliente.idCliente}" class="btn btn-edit">Editar</a>
                                 <a href="ClienteExcluir?idCliente=${cliente.idCliente}" class="btn btn-delete" onclick="return confirm('Deseja realmente excluir este cliente?')">Excluir</a>

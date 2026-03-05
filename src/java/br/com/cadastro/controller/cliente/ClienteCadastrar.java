@@ -45,6 +45,10 @@
           String email = request.getParameter("email");
           String dataNascimentoStr = request.getParameter("dataNascimento");
           String telefone = request.getParameter("telefone");
+          String cpf = request.getParameter("cpf");
+          String rg = request.getParameter("rg");
+          
+          
 
           int id = 0;
           if (idStr != null && !idStr.isEmpty()) {
@@ -67,7 +71,17 @@
           cliente.setEmail(email);
           cliente.setDataNascimento(dataNascimento);
           cliente.setTelefone(telefone);
+          cliente.setCpf(cpf);
+          cliente.setRg(rg);
 
+          if (clienteDAO.cpfExiste(cpf, cliente.getIdCliente())) {
+    request.setAttribute("erro", "CPF já cadastrado!");
+    request.setAttribute("cliente", cliente);
+    request.getRequestDispatcher("/cadastros/cliente/clienteCadastrar.jsp")
+           .forward(request, response);
+    return;
+}
+          
           // Verifica se o email ja existe no banco
           if (clienteDAO.emailExiste(email, id)) {
               request.setAttribute("erro", "Este e-mail ja esta cadastrado!");
@@ -75,8 +89,22 @@
               request.getRequestDispatcher("/cadastros/cliente/clienteCadastrar.jsp").forward(request, response);
               return;
           }
+          
+            //Verificar rg
+          if (clienteDAO.rgExiste(rg, id)){
+              request.setAttribute("erro", "Este RG já esta cadastrado");
+              request.setAttribute("rg", rg);
+              request.setAttribute("cliente", cliente);
+              request.getRequestDispatcher("/cadastros/cliente/clienteCadastrar.jsp").forward(request, response);
+              return;
+          }
 
           clienteDAO.cadastrar(cliente);
           response.sendRedirect("ClienteListar");
+          
+         
+        
+         
       }
+      
   }

@@ -65,6 +65,8 @@
                                         <th>Data Nasc.</th>
                                         <th>Telefone</th>
                                         <th>E-mail</th>
+                                        <th>CPF</th>
+                                        <th>Rg</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,6 +76,8 @@
                                             <td><fmt:formatDate value="${cliente.dataNascimento}" pattern="dd/MM/yyyy"/></td>
                                             <td>${cliente.telefone}</td>
                                             <td>${cliente.email}</td>
+                                            <td>${cliente.cpf}</td>
+                                             <td>${cliente.rg}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

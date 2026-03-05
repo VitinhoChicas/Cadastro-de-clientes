@@ -25,17 +25,23 @@ public class Cliente implements Serializable{
     private String email;
     private Date dataNascimento;
     private String telefone;
+    private String cpf;
+    private String rg;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nome, String email, Date dataNascimento, String telefone) {
+    public Cliente(int idCliente, String nome, String email, Date dataNascimento, String telefone, String cpf, String rg) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
+        this.cpf = cpf;
+        this.rg = rg;
     }
+
+   
 
     public int getIdCliente() {
         return idCliente;
@@ -76,12 +82,31 @@ public class Cliente implements Serializable{
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
+     public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nome=" + nome + ", email=" + email + ", dataNascimento=" + dataNascimento + ", telefone=" + telefone + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nome=" + nome + ", email=" + email + ", dataNascimento=" + dataNascimento + ", telefone=" + telefone + ", cpf=" + cpf + ", rg=" + rg + '}';
     }
-    
+
+  
+
+   
     
     
     

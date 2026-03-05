@@ -47,7 +47,7 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 
     @Override
     public Boolean inserir(Cliente cliente) {
-        String sql = "INSERT INTO cliente (nome, email, datanascimento, telefone) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO cliente (nome, email, datanascimento, telefone, cpf, rg) VALUES (?, ?, ?, ?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, cliente.getNome());
@@ -59,6 +59,8 @@ public class ClienteDAO implements GenericDAO<Cliente> {
     ps.setNull(3, java.sql.Types.DATE);
 }
             ps.setString(4, cliente.getTelefone());
+            ps.setString(5 , cliente.getCpf());
+            ps.setString(6, cliente.getRg());
             ps.execute();
             connection.commit();
             return true;
@@ -75,7 +77,7 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 
     @Override
     public Boolean alterar(Cliente cliente) {
-        String sql = "UPDATE cliente SET nome = ?, email = ?, datanascimento = ?, telefone = ? WHERE idcliente = ?";
+        String sql = "UPDATE cliente SET nome = ?, email = ?, datanascimento = ?, telefone = ?,cpf = ?, rg = ? WHERE idcliente = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, cliente.getNome());
@@ -88,7 +90,9 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 }
             
             ps.setString(4, cliente.getTelefone());
-            ps.setInt(5, cliente.getIdCliente());
+            ps.setString(5, cliente.getCpf());
+            ps.setString(6, cliente.getRg());
+            ps.setInt(7, cliente.getIdCliente());
             ps.executeUpdate();
             connection.commit();
             return true;
@@ -137,6 +141,8 @@ public class ClienteDAO implements GenericDAO<Cliente> {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setDataNascimento(rs.getDate("datanascimento"));
                 cliente.setTelefone(rs.getString("telefone"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setRg(rs.getString("rg"));
                 
                 
             }
@@ -160,6 +166,8 @@ public class ClienteDAO implements GenericDAO<Cliente> {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setDataNascimento(rs.getDate("datanascimento"));
                 cliente.setTelefone(rs.getString("telefone"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setRg(rs.getString("rg"));
                 clientes.add(cliente);
             }
         } catch (SQLException e) {
@@ -182,6 +190,8 @@ public class ClienteDAO implements GenericDAO<Cliente> {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setDataNascimento(rs.getDate("datanascimento"));
                 cliente.setTelefone(rs.getString("telefone"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setRg(rs.getString("rg"));
                 clientes.add(cliente);
             }
         } catch (SQLException e) {
@@ -190,7 +200,22 @@ public class ClienteDAO implements GenericDAO<Cliente> {
         return clientes;
     }
     
-    
+public boolean rgExiste(String rg, int idCliente) {
+    String sql = "SELECT COUNT(*) FROM cliente WHERE rg = ? AND idcliente != ?";
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, rg);
+        ps.setInt(2, idCliente);
+
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1) > 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
     
    public Boolean emailExiste(String email, int idCliente) {
       String sql = "SELECT COUNT(*) FROM cliente WHERE email = ? AND idcliente != ?";
@@ -207,6 +232,41 @@ public class ClienteDAO implements GenericDAO<Cliente> {
       }
       return false;
   }
+   
+   public boolean cpfExiste(String cpf, Integer idCliente) {
+    try {
+        String sql;
+        if (idCliente == null || idCliente == 0) {
+            sql = "SELECT COUNT(*) FROM cliente WHERE cpf = ?";
+        } else {
+            sql = "SELECT COUNT(*) FROM cliente WHERE cpf = ? AND idcliente != ?";
+        }
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, cpf);
+
+        if (idCliente != null && idCliente != 0) {
+            statement.setInt(2, idCliente);
+        }
+
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1) > 0;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+    
+    
+    
+    
+    
+    
+}
+   
+   
+   
 }
         
   

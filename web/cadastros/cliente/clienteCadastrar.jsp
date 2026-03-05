@@ -66,7 +66,23 @@
                       <input type="text" id="telefone" name="telefone" maxlength="11"  required value="${cliente.telefone}" 
   placeholder="Digite o telefone">
                   </div>
+  
+  <div class="form-group">
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" name="cpf"
+           value="${cliente.cpf}"
+           placeholder="000.000.000-00"
+           maxlength="14" required>
+</div>
 
+           <div class="form-group">
+    <label for="rg">CPF:</label>
+    <input type="text" id="rg" name="rg"
+           value="${cliente.rg}"
+           placeholder="00.000.000-0"
+           maxlength="12" required>
+</div>
+           
                   <div class="form-actions">
                       <button type="submit" class="btn btn-primary">Salvar</button>
                       <a href="ClienteListar" class="btn btn-secondary">Cancelar</a>
@@ -79,6 +95,14 @@
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-      
+     
+      <script>
+    $('#cpf').mask('000.000.000-00');
+    $('#rg').mask('00.000.000-0');
+</script>
+
+
+
+
   </body>
   </html>
