@@ -9,6 +9,7 @@
     <ul>
         <li><a href="index.jsp">Início</a></li>
         <li><a href="ClienteListar">Clientes</a></li>
+        <li><a href="ComprasListar">Compras</a></li>
         <li><a href="RelatorioAniversariantes">Aniversariantes</a></li>
     </ul>
 </nav>
