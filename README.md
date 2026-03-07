@@ -30,6 +30,12 @@ O **CadastroClientes** é uma aplicação web desenvolvida em Java que permite o
 - Editar informações do cliente
 - Excluir cliente
 
+### Módulo de Compras
+- Listar todos as compras
+- Cadastrar nova compra
+- Editar informações da compra
+- Exclui compra
+
 ### Módulo de Relatórios
 - Relatório de aniversariantes do mês
 - Filtro por mês específico ou todos os meses
